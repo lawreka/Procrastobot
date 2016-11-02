@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <style>
+    .hidden{
+      opacity: 0;
+    }
+    .dropdwn{
+      display: inline-block;
+    }
+    .notselect{
+      color: grey;
+    }
+    .selected{
+      color: red;
+    }
+    </style>
+    <title>Procrastobot</title>
+  </head>
+  <body onload="runClock()">
+    <!-- clock real time -->
+    <div id="clock">
+    </div>
+    <!-- set task -->
+    <form id="settext">
+      <input type="text" id="txt" placeholder="Set task">
+      <button type="submit">Submit</button>
+    </form>
+    <div id="todo"></div>
+    <!-- reminder setter -->
+    <div id="dropdown" class="dropdown">
+      <button onclick="pick()" class="dropper">Remind me every</button>
+      <div id="times" class="dropdwn hidden">
+        <a href="#" onclick="fivemins()">5 minutes</a>
+        <a href="#" onclick="thirtmins()">30 minutes</a>
+        <a href="#" onclick="onehour()">1 hour</a>
+      </div>
+    </div>
+    <!-- mood changer -->
+    <div id="moodselect"> Select mood
+        <a href="#" onclick="posi()" id="posi" class="notselect"> :) </a>
+        <a href="#" onclick="neut()" id="neut" class="notselect"> :| </a>
+        <a href="#" onclick="nega()" id="nega" class="notselect"> :( </a>
+    </div>
+    <!-- reset -->
+    <button id="reset">Reset</button>
+  </body>
+  <script>
+    // make clock run
+    function runClock() {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      m = minSec(m);
+      s = minSec(s);
+      document.getElementById('clock').innerHTML =
+      h + ":" + m + ":" + s;
+      var t = setTimeout(runClock, 500);
+    }
+    function minSec(i) {
+      if (i < 10) {
+        i = "0" + i;
+        return i;
+      }
+      else{
+        return i;
+      }
+    }
+    // assign task input to popup window text
+    var get = document.querySelector("#settext");
+    get.addEventListener("submit", setText);
+    function setText(event){
+      event.preventDefault();
+      var text = document.querySelector("#txt");
+      var t = text.value;
+      if (t == ""){
+        window.alert("You must set a task");
+      }
+      else{
+        console.log(t);
+        $("#settext").addClass("hidden");
+        $("#todo").text(t);
+      }
+    }
+    //dropdown functions
+    function pick(){
+      $("#times").removeClass("hidden");
+    }
+    window.onclick = function(event){
+      if (!event.target.matches(".dropper")){
+        $("#times").addClass("hidden");
+      }
+    }
+    // assign reminder setter time to clock time and schedule popups
+    function checkTime(){
+      var currentTime = new Date();
+      console.log(currentTime);
+      var t = setTimeout(checkTime, 2000);
+    }
+    function fivemins(){
+      $("#dropdown").addClass("hidden");
+      var msg = document.querySelector("#todo").textContent;
+      window.alert(msg + mood);
+      var t = setTimeout(fivemins, 2000);
+    }
+    function thirtmins(){
+      $("#dropdown").addClass("hidden");
+      window.alert("see this reminder every thirty minutes");
+      var t = setTimeout(thirtmins,  1800000 );
+    }
+    function onehour(){
+      $("#dropdown").addClass("hidden");
+      window.alert("see this reminder every hour");
+      var t = setTimeout(fivemins, 3600000);
+    }
+    // use mood changer to change popup window text
+    var mood = "";
+    function posi(){
+      $("#posi").removeClass("notselect");
+      $("#posi").addClass("selected");
+      $("#neut").addClass("hidden");
+      $("#nega").addClass("hidden");
+      mood = " and you'll be rewarded :)";
+    }
+    function neut(){
+      $("#neut").removeClass("notselect");
+      $("#neut").addClass("selected");
+      $("#posi").addClass("hidden");
+      $("#nega").addClass("hidden");
+      mood = " just do it :|";
+    }
+    function nega(){
+      $("#nega").removeClass("notselect");
+      $("#nega").addClass("selected");
+      $("#posi").addClass("hidden");
+      $("#neut").addClass("hidden");
+      mood = " or else something bad :(";
+    }
+    // reset button to clear all inputs
+    $("#reset").on("click", function(){
+      location.reload();
+    });
+  </script>
+</html>
