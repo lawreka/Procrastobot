@@ -72,6 +72,8 @@ function fivemins(){
         }
       }
     }
+    $("#clock").removeClass("clock");
+    $("#clock").addClass("smallclock");
     $("#dropdown").addClass("hidden");
     $("#todo").addClass("superhide");
     $("#moodselect").addClass("superhide");
@@ -127,5 +129,5 @@ function nega(){
 }
 // reset button to clear all inputs
 $("#reset").on("click", function(){
-  location.reload();
+  window.location.reload(true);
 })

@@ -14,13 +14,18 @@ body{
   background-color: black;
   color: white;
 }
-#clock{
+.clock{
   font-size: 5em;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   margin-top: 10%;
+}
+.smallclock{
+  font-size: 2em;
+  width: 90%;
+  margin-top: 5%;
 }
 #todo{
   font-size: 4em;
