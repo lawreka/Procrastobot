@@ -10,38 +10,109 @@
       display: inline-block;
     }
     .notselect{
-      color: grey;
+      background-color: grey;
     }
     .selected{
-      color: red;
+      background-color: red;
+    }
+    body{
+      background-color: black;
+      color: white;
+    }
+    #clock{
+      font-size: 5em;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-top: 10%;
+    }
+    #todo{
+      font-size: 4em;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    #button{
+      display: block;
+      width: 100px;
+      height: 50px;
+      box-shadow: 1px 1px grey 10px;
+      background-color: white;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #dropdown{
+      text-align: center;
+    }
+    .options{
+      display: block;
+      background-color: white;
+      text-align: center;
+    }
+    #moodselect{
+      display: inline;
+    }
+    .icon{
+      width: 30px;
+      height: 30px;
+      padding: 10px;
+      border-radius: 50%;
+    }
+    .posistyle{
+      background-image: url("posiface.png");
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+    }
+    .neutstyle{
+
+    }
+    .negastyle{
+
     }
     </style>
     <title>Procrastobot</title>
   </head>
-  <body onload="runClock()">
+  <body onload="runClock()" class="posistyle">
     <!-- clock real time -->
     <div id="clock">
     </div>
     <!-- set task -->
-    <form id="settext">
+    <!-- <form id="settext">
       <input type="text" id="txt" placeholder="Set task">
       <button type="submit">Submit</button>
-    </form>
-    <div id="todo"></div>
+    </form> -->
+    <div id="todo">
+    DO THE THING
+    </div>
     <!-- reminder setter -->
     <div id="dropdown" class="dropdown">
-      <button onclick="pick()" class="dropper">Remind me every</button>
+      <button onclick="pick()" id="button" class="dropper">Remind me every</button>
       <div id="times" class="dropdwn hidden">
-        <a href="#" onclick="fivemins()">5 minutes</a>
-        <a href="#" onclick="thirtmins()">30 minutes</a>
-        <a href="#" onclick="onehour()">1 hour</a>
+        <p class="options">
+          <a href="#" onclick="fivemins()">5 minutes</a>
+        </p>
+        <p class="options">
+          <a href="#" onclick="thirtmins()">30 minutes</a>
+        </p>
+        <p class="options">
+          <a href="#" onclick="onehour()">1 hour</a>
+        </p>
       </div>
     </div>
     <!-- mood changer -->
     <div id="moodselect"> Select mood
-        <a href="#" onclick="posi()" id="posi" class="notselect"> :) </a>
-        <a href="#" onclick="neut()" id="neut" class="notselect"> :| </a>
-        <a href="#" onclick="nega()" id="nega" class="notselect"> :( </a>
+        <a href="#" onclick="posi()" id="posi">
+          <img src="posiface.png" class="icon notselect">
+        </a>
+        <a href="#" onclick="neut()" id="neut">
+          <img src="neutface.png" class="icon notselect">
+        </a>
+        <a href="#" onclick="nega()" id="nega">
+          <img src="negaface.png" class="icon notselect">
+        </a>
     </div>
     <!-- reset -->
     <button id="reset">Reset</button>
