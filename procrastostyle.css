@@ -1,0 +1,82 @@
+.hidden{
+  opacity: 0;
+}
+.dropdwn{
+  display: inline-block;
+}
+.notselect{
+  background-color: grey;
+}
+.selected{
+  background-color: red;
+}
+body{
+  background-color: black;
+  color: white;
+}
+#clock{
+  font-size: 5em;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 10%;
+}
+#todo{
+  font-size: 4em;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+#button{
+  display: block;
+  width: 100px;
+  height: 50px;
+  box-shadow: 1px 1px grey 10px;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+#dropdown{
+  text-align: center;
+}
+#times{
+  background-color: grey;
+  width: 100px;
+}
+.options{
+  display: block;
+  text-align: center;
+}
+#moodselect{
+  /*display: inline;*/
+  width: 100%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.icon{
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  border-radius: 50%;
+  margin: 10px;
+}
+#reload{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+.superhide{
+  display: none;
+}
+.mainface{
+  max-width: 100%;
+  max-height: 100%;
+}

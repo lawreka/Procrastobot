@@ -1,78 +1,9 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="procrastostyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <style>
-    .hidden{
-      opacity: 0;
-    }
-    .dropdwn{
-      display: inline-block;
-    }
-    .notselect{
-      background-color: grey;
-    }
-    .selected{
-      background-color: red;
-    }
-    body{
-      background-color: black;
-      color: white;
-    }
-    #clock{
-      font-size: 5em;
-      width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      margin-top: 10%;
-    }
-    #todo{
-      font-size: 4em;
-      width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-    #button{
-      display: block;
-      width: 100px;
-      height: 50px;
-      box-shadow: 1px 1px grey 10px;
-      background-color: white;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    #dropdown{
-      text-align: center;
-    }
-    .options{
-      display: block;
-      background-color: white;
-      text-align: center;
-    }
-    #moodselect{
-      display: inline;
-    }
-    .icon{
-      width: 30px;
-      height: 30px;
-      padding: 10px;
-      border-radius: 50%;
-    }
-    .posistyle{
-      background-image: url("posiface.png");
-      background-repeat: no-repeat;
-      width: 100%;
-      height: 100%;
-    }
-    .neutstyle{
-
-    }
-    .negastyle{
-
-    }
-    </style>
+    <script src="procrastoscript.js"></script>
     <title>Procrastobot</title>
   </head>
   <body onload="runClock()" class="posistyle">
@@ -86,6 +17,23 @@
     </form> -->
     <div id="todo">
     DO THE THING
+    </div>
+    <div id="faces" class="hidden">
+      <img src="posiface2.png" id="posiface" class="superhide">
+      <img src="neutface.png" id="neutface" class="superhide">
+      <img src="negaface.png" id="negaface" class="superhide">
+    </div>
+    <!-- mood changer -->
+    <div id="moodselect">
+        <a href="#" onclick="posi()" id="posi">
+          <img src="posiface2.png" id="posicon" class="icon notselect">
+        </a>
+        <a href="#" onclick="neut()" id="neut">
+          <img src="neutface.png" id="neuticon" class="icon notselect">
+        </a>
+        <a href="#" onclick="nega()" id="nega">
+          <img src="negaface.png" id="negaicon" class="icon notselect">
+        </a>
     </div>
     <!-- reminder setter -->
     <div id="dropdown" class="dropdown">
@@ -102,116 +50,9 @@
         </p>
       </div>
     </div>
-    <!-- mood changer -->
-    <div id="moodselect"> Select mood
-        <a href="#" onclick="posi()" id="posi">
-          <img src="posiface.png" class="icon notselect">
-        </a>
-        <a href="#" onclick="neut()" id="neut">
-          <img src="neutface.png" class="icon notselect">
-        </a>
-        <a href="#" onclick="nega()" id="nega">
-          <img src="negaface.png" class="icon notselect">
-        </a>
-    </div>
     <!-- reset -->
-    <button id="reset">Reset</button>
+    <div id="reload">
+      <a href="#" id="reset">Reset</a>
+    </div>
   </body>
-  <script>
-    // make clock run
-    function runClock() {
-      var today = new Date();
-      var h = today.getHours();
-      var m = today.getMinutes();
-      var s = today.getSeconds();
-      m = minSec(m);
-      s = minSec(s);
-      document.getElementById('clock').innerHTML =
-      h + ":" + m + ":" + s;
-      var t = setTimeout(runClock, 500);
-    }
-    function minSec(i) {
-      if (i < 10) {
-        i = "0" + i;
-        return i;
-      }
-      else{
-        return i;
-      }
-    }
-    // assign task input to popup window text
-    var get = document.querySelector("#settext");
-    get.addEventListener("submit", setText);
-    function setText(event){
-      event.preventDefault();
-      var text = document.querySelector("#txt");
-      var t = text.value;
-      if (t == ""){
-        window.alert("You must set a task");
-      }
-      else{
-        console.log(t);
-        $("#settext").addClass("hidden");
-        $("#todo").text(t);
-      }
-    }
-    //dropdown functions
-    function pick(){
-      $("#times").removeClass("hidden");
-    }
-    window.onclick = function(event){
-      if (!event.target.matches(".dropper")){
-        $("#times").addClass("hidden");
-      }
-    }
-    // assign reminder setter time to clock time and schedule popups
-    function checkTime(){
-      var currentTime = new Date();
-      console.log(currentTime);
-      var t = setTimeout(checkTime, 2000);
-    }
-    function fivemins(){
-      $("#dropdown").addClass("hidden");
-      var msg = document.querySelector("#todo").textContent;
-      window.alert(msg + mood);
-      var t = setTimeout(fivemins, 2000);
-    }
-    function thirtmins(){
-      $("#dropdown").addClass("hidden");
-      window.alert("see this reminder every thirty minutes");
-      var t = setTimeout(thirtmins,  1800000 );
-    }
-    function onehour(){
-      $("#dropdown").addClass("hidden");
-      window.alert("see this reminder every hour");
-      var t = setTimeout(fivemins, 3600000);
-    }
-    // use mood changer to change popup window text
-    var mood = "";
-    function posi(){
-      $("#posi").removeClass("notselect");
-      $("#posi").addClass("selected");
-      $("#neut").addClass("hidden");
-      $("#nega").addClass("hidden");
-      mood = " and you'll be rewarded :)";
-    }
-    function neut(){
-      $("#neut").removeClass("notselect");
-      $("#neut").addClass("selected");
-      $("#posi").addClass("hidden");
-      $("#nega").addClass("hidden");
-      mood = " just do it :|";
-    }
-    function nega(){
-      $("#nega").removeClass("notselect");
-      $("#nega").addClass("selected");
-      $("#posi").addClass("hidden");
-      $("#neut").addClass("hidden");
-      mood = " or else something bad :(";
-    }
-    // reset button to clear all inputs
-    $("#reset").on("click", function(){
-      location.reload();
-    });
-  </script>
 </html>
