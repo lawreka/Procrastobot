@@ -58,7 +58,10 @@ function fivemins(){
     $("#moodselect").addClass("superhide");
     $("#faces").removeClass("hidden");
     window.alert("Remind me in 5 minutes");
-    var t = setTimeout(fivemins, 30000);
+    // test interval
+    var t = setTimeout(fivemins, 3000);
+    // real interval
+    // var t = setTimeout(fivemins, 300000);
   }
 }
 function thirtmins(){
