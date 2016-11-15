@@ -6,15 +6,10 @@
     <script src="procrastoscript.js"></script>
     <title>Procrastobot</title>
   </head>
-  <body onload="runClock()" class="posistyle">
+  <body onload="runClock()">
     <!-- clock real time -->
     <div id="clock" class="clock">
     </div>
-    <!-- set task -->
-    <!-- <form id="settext">
-      <input type="text" id="txt" placeholder="Set task">
-      <button type="submit">Submit</button>
-    </form> -->
     <div id="todo">
     DO THE THING
     </div>
@@ -49,6 +44,10 @@
           <a href="#" onclick="onehour()">1 hour</a>
         </p>
       </div>
+    </div>
+    <div id="buttons">
+      <a id="testmode" class="selected" href="#">Test Mode</a>
+      <a id="realmode" class="notselected" href="#">Real Time</a>
     </div>
   </body>
 </html>

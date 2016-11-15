@@ -1,3 +1,31 @@
+var testmode = true;
+var t;
+$("#realmode").on("click", function() {
+  console.log("hello??");
+  if (testmode == true){
+    $("#realmode").removeClass("notselected");
+    $("#realmode").addClass("selected");
+    $("#testmode").removeClass("selected");
+    $("#testmode").addClass("notselected");
+        testmode = false;
+  }
+  else{
+    return;
+  }
+});
+$("#testmode").on("click", function() {
+  console.log("hello??");
+  if (testmode == false){
+    $("#testmode").addClass("selected");
+    $("#testmode").removeClass("notselected");
+    $("#realmode").removeClass("selected");
+    $("#realmode").addClass("notselected");
+    testmode = true;
+  }
+  else{
+    return;
+  }
+});
 // make clock run
 function runClock() {
   var today = new Date();
@@ -30,6 +58,7 @@ window.onclick = function(event){
 }
 // schedule popups
 function fivemins(){
+  console.log("five mins");
   if ($("#posicon").hasClass("notselect") && $("#neuticon").hasClass("notselect") && $("#negaicon").hasClass("notselect")){
     window.alert("Please choose a mood for your reminder");
     return;
@@ -58,10 +87,12 @@ function fivemins(){
     $("#moodselect").addClass("superhide");
     $("#faces").removeClass("hidden");
     window.alert("Remind me in 5 minutes");
-    // test interval
-    var t = setTimeout(fivemins, 3000);
-    // real interval
-    // var t = setTimeout(fivemins, 300000);
+    if (testmode == true){
+    t = setTimeout(fivemins, 5000);
+    }
+    else {
+      t = setTimeout(fivemins, 300000);
+    }
   }
 }
 function thirtmins(){
@@ -93,7 +124,12 @@ function thirtmins(){
     $("#moodselect").addClass("superhide");
     $("#faces").removeClass("hidden");
     window.alert("Remind me in 30 minutes");
+    if (testmode == true){
+    var t = setTimeout(thirtmins, 5000);
+    }
+    else {
     var t = setTimeout(thirtmins,  1800000 );
+    }
   }
 }
 function onehour(){
@@ -125,7 +161,12 @@ function onehour(){
     $("#moodselect").addClass("superhide");
     $("#faces").removeClass("hidden");
     window.alert("Remind me in 1 hour");
-    var t = setTimeout(fivemins, 3600000);
+    if (testmode == true){
+    var t = setTimeout(onehour, 5000);
+    }
+    else {
+    var t = setTimeout(onehour, 3600000);
+    }
   }
 }
 // change mood
